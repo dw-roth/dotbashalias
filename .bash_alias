@@ -1,0 +1,84 @@
+#!/bin/bash
+
+export PS1="\w>"
+export CDPATH=$CDPATH:~/code:~/jetty-distribution-9.4.0.v20161208/webapps
+
+alias vim="vim -N"
+alias less="less -FSRXc"
+alias mkdir="mkdir -pv"
+alias mv="mv -iv"
+alias cp="cp -iv"
+alias cpf="cp -Rvf"
+alias edit="vim"
+alias bd="gulp build --target=dev"
+alias br="build build --target=release"
+
+alias cd..="cd .."
+alias ..="cd .."
+alias .1="cd ../"
+alias .2="cd ../../"
+alias .3="cd ../../../"
+alias .4="cd ../../../../"
+alias .5="cd ../../../../../"
+alias .6="cd ../../../../../../"
+
+alias cls="clear"
+
+function g() {
+  A=$1
+
+  if [ "${A}" = "doc" ]
+  then
+    cd ~/Documents
+    return
+  fi
+
+  if [ "${A}" = "down" ]
+  then
+    cd ~/Downloads
+    return
+  fi
+
+  if [ "${A}" = "jetty" ]
+  then
+    cd ~/jetty-distribution-9.4.0.v20161208/webapps
+    return
+  fi
+
+  if [ "${A}" = "code" ]
+  then
+    cd ~/code
+    return
+  fi
+
+  if [ "${A}" = "con" ]
+  then
+    cd ~/code/concierge
+    return
+  fi
+
+  cd ~
+}
+
+function d() {
+  A=$1
+
+  if [ "${A}" = "con" ]
+  then
+    rm -rf ~/jetty-distribution-9.4.0.v20161208/webapps/concierge.d
+    cp -Rv ~/code/concierge/dist/ ~/jetty-distribution-9.4.0.v20161208/webapps/concierge.d
+  fi
+
+  if [ "${A}" = "ps" ]
+  then
+    rm -rf ~/jetty-distribution-9.4.0.v20161208/webapps/pluralstack.d
+    cp -Rv ~/code/pluralstack/ ~/jetty-distribution-9.4.0.v.20161208/webapps/pluralstack.d
+  fi
+
+  return 
+}
+
+function f() {
+  echo "Searching for " $1
+  find . -type f -exec grep -il $1 P{ \;
+}
