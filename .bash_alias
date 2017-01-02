@@ -11,7 +11,7 @@ alias cp="cp -iv"
 alias cpf="cp -Rvf"
 alias edit="vim"
 alias bd="gulp build --target=dev"
-alias br="build build --target=release"
+alias br="gulp build --target=release"
 
 alias cd..="cd .."
 alias ..="cd .."
@@ -23,6 +23,8 @@ alias .5="cd ../../../../../"
 alias .6="cd ../../../../../../"
 
 alias cls="clear"
+
+alias myip="curl ipinfo.io"
 
 function g() {
   A=$1
@@ -40,6 +42,12 @@ function g() {
   fi
 
   if [ "${A}" = "jetty" ]
+  then
+    cd ~/jetty-distribution-9.4.0.v20161208/webapps
+    return
+  fi
+
+  if [ "${A}" = "jet" ]
   then
     cd ~/jetty-distribution-9.4.0.v20161208/webapps
     return
@@ -81,4 +89,8 @@ function d() {
 function f() {
   echo "Searching for " $1
   find . -type f -exec grep -il $1 P{ \;
+}
+
+function weather() {
+  curl wttr.in/$1
 }
